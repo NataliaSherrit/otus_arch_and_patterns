@@ -14,8 +14,7 @@ public class QuadraticEquation {
     }
 
     private double calculateDiscriminant (double a, double b, double c) {
-        double D = Math.pow(b, 2) - 4 * a * c;
-        return D;
+        return Math.pow(b, 2) - 4 * a * c;
     }
 
     private double[] calculateRoots (double a, double b, double c) {
