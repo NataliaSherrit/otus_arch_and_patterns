@@ -1,3 +1,6 @@
+package QuadraticEquation;
+
+
 import java.util.Arrays;
 
 public class QuadraticEquation {
