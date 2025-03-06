@@ -16,14 +16,14 @@ public class QuadraticEquation {
 
     private double[] calculateRoots (double a, double b, double c) {
         if (Math.abs(calculateDiscriminant(a,b,c)) < EPS) {
-            System.out.println("У заданного уравнения один корень");
+            System.out.println("The given equation has one root");
             return new double[]{-b / (2 * a)};
         }
         if (calculateDiscriminant(a,b,c) < 0) {
-            System.out.println("У заданного уравнения нет корней");
+            System.out.println("The given equation has no roots");
             return new double[]{};
         }
-        System.out.println("У заданного уравнения два корня");
+        System.out.println("The given equation has two roots");
         return new double[]{(-b - Math.sqrt(calculateDiscriminant(a,b,c))) / (2 * a), (-b + Math.sqrt(calculateDiscriminant(a,b,c))) / (2 * a)};
     }
 

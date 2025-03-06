@@ -1,9 +1,14 @@
-import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-import org.testng.Assert;
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 
-public class QuadraticEquationTests extends Assert {
+public class QuadraticEquationTests {
+    private static void call() {
+        new QuadraticEquation().solve(0, 0, 0);
+    }
+
     @Test
     public void testNoRoots() {
         Assertions.assertArrayEquals(new double[]{}, new QuadraticEquation().solve(1, 0, 1));
@@ -19,9 +24,9 @@ public class QuadraticEquationTests extends Assert {
         Assertions.assertArrayEquals(new double[]{-1}, new QuadraticEquation().solve(1, 2, 1));
 
     }
-    @Test (expected = NullCoeffsException.class)
+    @Test
     public void testCoeffsIsNull() {
-        new QuadraticEquation().solve(0, 0, 0);
+        assertThatThrownBy(() -> {new QuadraticEquation().solve(0, 0, 0);}).isInstanceOf(NullCoeffsException.class);
 
     }
     @Test
@@ -39,9 +44,9 @@ public class QuadraticEquationTests extends Assert {
         Assertions.assertArrayEquals(new double[]{-5.0E-21}, new QuadraticEquation().solve(1, 1e-20, 1e-20));
 
     }
-    @Test (expected = NullCoeffsException.class)
+    @Test
     public void testAllCoefsSmallerThanEps() {
-        new QuadraticEquation().solve(1e-12, 1e-20, 1e-20);
+        assertThatThrownBy(() -> {new QuadraticEquation().solve(1e-12, 1e-20, 1e-20);}).isInstanceOf(NullCoeffsException.class);
 
     }
 }

@@ -6,10 +6,19 @@ sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
 dependencies {
-    implementation 'org.testng:testng:6.9.4'
-    implementation 'org.junit.jupiter:junit-jupiter-api:5.0.3'
-    implementation 'junit:junit:4.13.1'
-    implementation 'junit:junit:4.13.1'
+    implementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+    implementation 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+    implementation 'org.assertj:assertj-core:3.23.1'
+    testImplementation 'junit:junit:4.13.1'
+}
+
+test {
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+        exceptionFormat "full"
+    }
+    useJUnitPlatform()
+    testLogging.showStandardStreams = true
 }
 
 sourceSets {
