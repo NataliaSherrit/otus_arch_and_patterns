@@ -1,2 +1,3 @@
 rootProject.name = 'otus_arch_and_patterns'
 include 'QuadraticEquation'
+include 'GameAbstraction'
