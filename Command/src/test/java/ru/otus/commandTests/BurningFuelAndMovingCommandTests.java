@@ -27,7 +27,7 @@ public class BurningFuelAndMovingCommandTests {
     }
 
     @Test
-    public void TestExecuteCheckFuelAndMoveBurnFuelCommands() {
+    public void testExecuteCheckFuelAndMoveBurnFuelCommands() {
         burnFuelMoveCommand.execute();
 
         verify(checkFuelCommand, times(1)).execute();
@@ -41,7 +41,7 @@ public class BurningFuelAndMovingCommandTests {
     }
 
     @Test
-    public void TestStopMacroCommandIfOneIsUncorrect() {
+    public void testStopMacroCommandIfOneIsUncorrect() {
         RuntimeException exception = new RuntimeException("test");
         doThrow(exception).when(checkFuelCommand).execute();
         assertThatThrownBy(() -> burnFuelMoveCommand.execute()).isInstanceOf(CommandException.class).hasMessageContaining(exception.getMessage()).hasCause(exception);

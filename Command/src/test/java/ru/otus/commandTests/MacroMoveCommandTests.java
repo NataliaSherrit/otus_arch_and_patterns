@@ -26,7 +26,7 @@ public class MacroMoveCommandTests {
     }
 
     @Test
-    public void TestExecuteCheckFuelCommandAndMoveBurnFuelCommand() {
+    public void testExecuteCheckFuelCommandAndMoveBurnFuelCommand() {
         macroMoveCommand.execute();
 
         verify(moveCommand, times(1)).execute();
@@ -38,7 +38,7 @@ public class MacroMoveCommandTests {
     }
 
     @Test
-    public void TestStopMacroMoveCommand() {
+    public void testStopMacroMoveCommand() {
         RuntimeException exception = new RuntimeException("test");
         doThrow(exception).when(moveCommand).execute();
         assertThatThrownBy(() -> macroMoveCommand.execute()).isInstanceOf(CommandException.class).hasMessageContaining(exception.getMessage()).hasCause(exception);

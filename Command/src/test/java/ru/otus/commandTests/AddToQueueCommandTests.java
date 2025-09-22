@@ -9,7 +9,7 @@ import static org.mockito.Mockito.*;
 
 public class AddToQueueCommandTests {
     @Test
-    public void TestAddToQueueOtherCommand() {
+    public void testAddToQueueOtherCommand() {
         Command command = mock(Command.class);
         QueueCommand queueCommand = mock(QueueCommand.class);
         AddToQueueCommand addToQueueCommand = new AddToQueueCommand(command, queueCommand);

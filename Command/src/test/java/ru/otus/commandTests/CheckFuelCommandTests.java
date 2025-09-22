@@ -20,7 +20,7 @@ public class CheckFuelCommandTests {
     }
 
     @Test
-    public void TestCheckingEnoughFuelToBurn() {
+    public void testCheckingEnoughFuelToBurn() {
         when(iFuelCheckObject.getFuelLevel()).thenReturn(10);
         when(iFuelCheckObject.getFuelBurnVelocity()).thenReturn(2);
         checkFuelCommand.execute();
@@ -30,7 +30,7 @@ public class CheckFuelCommandTests {
     }
 
     @Test
-    public void TestCheckingNotEnoughFuelToBurn() {
+    public void testCheckingNotEnoughFuelToBurn() {
         when(iFuelCheckObject.getFuelLevel()).thenReturn(1);
         when(iFuelCheckObject.getFuelBurnVelocity()).thenReturn(2);
         assertThatThrownBy(() -> checkFuelCommand.execute()).isInstanceOf(CommandException.class).hasMessageContaining("Not enough fuel");
