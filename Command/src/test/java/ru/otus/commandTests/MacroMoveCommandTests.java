@@ -41,9 +41,7 @@ public class MacroMoveCommandTests {
     public void TestStopMacroMoveCommand() {
         RuntimeException exception = new RuntimeException("test");
         doThrow(exception).when(moveCommand).execute();
-        assertThatThrownBy(() -> {
-            macroMoveCommand.execute();
-        }).isInstanceOf(CommandException.class).hasMessageContaining(exception.getMessage()).hasCause(exception);
+        assertThatThrownBy(() -> macroMoveCommand.execute()).isInstanceOf(CommandException.class).hasMessageContaining(exception.getMessage()).hasCause(exception);
 
         verify(moveCommand, times(1)).execute();
         verify(queueCommand, times(0)).addLast(any(Command.class));

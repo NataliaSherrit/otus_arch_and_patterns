@@ -34,9 +34,7 @@ public class RotateObjectTests {
         when(rotateObject.getNumOfDirections()).thenReturn(0);
         when(rotateObject.getDirection()).thenReturn(200);
         when(rotateObject.getAngular()).thenReturn(50);
-        assertThatThrownBy(() -> {
-            rotateCommand.execute();
-        }).isInstanceOf(ArithmeticException.class).hasMessageContaining("by zero");
+        assertThatThrownBy(rotateCommand::execute).isInstanceOf(ArithmeticException.class).hasMessageContaining("by zero");
     }
 
     @Test
@@ -44,9 +42,7 @@ public class RotateObjectTests {
         when(rotateObject.getNumOfDirections()).thenReturn(50);
         when(rotateObject.getDirection()).thenThrow(new CommandException("Can not get direction"));
         when(rotateObject.getAngular()).thenReturn(10);
-        assertThatThrownBy(() -> {
-            rotateCommand.execute();
-        }).isInstanceOf(CommandException.class).hasMessageContaining("Can not get direction");
+        assertThatThrownBy(rotateCommand::execute).isInstanceOf(CommandException.class).hasMessageContaining("Can not get direction");
     }
 
     @Test
@@ -54,9 +50,7 @@ public class RotateObjectTests {
         when(rotateObject.getNumOfDirections()).thenReturn(360);
         when(rotateObject.getDirection()).thenReturn(100);
         when(rotateObject.getAngular()).thenThrow(new CommandException("Can not get angular"));
-        assertThatThrownBy(() -> {
-            rotateCommand.execute();
-        }).isInstanceOf(CommandException.class).hasMessageContaining("Can not get angular");
+        assertThatThrownBy(rotateCommand::execute).isInstanceOf(CommandException.class).hasMessageContaining("Can not get angular");
     }
 
 
@@ -66,8 +60,6 @@ public class RotateObjectTests {
         when(rotateObject.getDirection()).thenReturn(100);
         when(rotateObject.getAngular()).thenReturn(20);
         doThrow(new CommandException("Can not set direction")).when(rotateObject).setDirection(anyInt());
-        assertThatThrownBy(() -> {
-            rotateCommand.execute();
-        }).isInstanceOf(RuntimeException.class).hasMessageContaining("Can not set direction");
+        assertThatThrownBy(rotateCommand::execute).isInstanceOf(RuntimeException.class).hasMessageContaining("Can not set direction");
     }
 }

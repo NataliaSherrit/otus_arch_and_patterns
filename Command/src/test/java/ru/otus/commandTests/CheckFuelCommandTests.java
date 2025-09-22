@@ -33,8 +33,6 @@ public class CheckFuelCommandTests {
     public void TestCheckingNotEnoughFuelToBurn() {
         when(iFuelCheckObject.getFuelLevel()).thenReturn(1);
         when(iFuelCheckObject.getFuelBurnVelocity()).thenReturn(2);
-        assertThatThrownBy(() -> {
-            checkFuelCommand.execute();
-        }).isInstanceOf(CommandException.class).hasMessageContaining("Not enough fuel");
+        assertThatThrownBy(() -> checkFuelCommand.execute()).isInstanceOf(CommandException.class).hasMessageContaining("Not enough fuel");
     }
 }

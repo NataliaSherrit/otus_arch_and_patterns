@@ -44,9 +44,7 @@ public class BurningFuelAndMovingCommandTests {
     public void TestStopMacroCommandIfOneIsUncorrect() {
         RuntimeException exception = new RuntimeException("test");
         doThrow(exception).when(checkFuelCommand).execute();
-        assertThatThrownBy(() -> {
-            burnFuelMoveCommand.execute();
-        }).isInstanceOf(CommandException.class).hasMessageContaining(exception.getMessage()).hasCause(exception);
+        assertThatThrownBy(() -> burnFuelMoveCommand.execute()).isInstanceOf(CommandException.class).hasMessageContaining(exception.getMessage()).hasCause(exception);
 
         verify(checkFuelCommand, times(1)).execute();
         verify(moveCommand, times(0)).execute();

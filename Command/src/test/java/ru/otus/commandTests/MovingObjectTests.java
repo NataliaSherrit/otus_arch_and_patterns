@@ -26,22 +26,21 @@ public class MovingObjectTests {
         when(movingObject.getVelocity()).thenReturn(new CurrentLocation(-7, 3));
         moveCommand.execute();
 
-        verify(movingObject, times(1)).setLocation(argThat(currentLocation -> currentLocation.getCurrentLocation(0) == 5 && currentLocation.getCurrentLocation(1) == 8));
+        verify(movingObject,
+                times(1)).setLocation(argThat(currentLocation -> currentLocation.getCurrentLocation(0) == 5 && currentLocation.getCurrentLocation(1) == 8));
     }
 
     @Test
     public void testNotNullLocation() {
         when(movingObject.getLocation()).thenReturn(null);
-        assertThatThrownBy(() -> {moveCommand.execute();}).isInstanceOf(CommandException.class).hasMessageContaining("Can not get location");
+        assertThatThrownBy(moveCommand::execute).isInstanceOf(CommandException.class).hasMessageContaining("Can not get location");
     }
 
     @Test
     public void testNotNullVelocity() {
         when(movingObject.getLocation()).thenReturn(new CurrentLocation(12, 5));
         when(movingObject.getVelocity()).thenReturn(null);
-        assertThatThrownBy(() -> {
-            moveCommand.execute();
-        }).isInstanceOf(CommandException.class).hasMessageContaining("Can not get velocity");
+        assertThatThrownBy(moveCommand::execute).isInstanceOf(CommandException.class).hasMessageContaining("Can not get velocity");
     }
 
     @Test
@@ -49,9 +48,7 @@ public class MovingObjectTests {
         when(movingObject.getLocation()).thenReturn(new CurrentLocation(12, 5));
         when(movingObject.getVelocity()).thenReturn(new CurrentLocation(-7, 3));
         doThrow(new CommandException("Can not set position")).when(movingObject).setLocation(any());
-        assertThatThrownBy(() -> {
-            moveCommand.execute();
-        }).isInstanceOf(CommandException.class).hasMessageContaining("Can not set position");
+        assertThatThrownBy(moveCommand::execute).isInstanceOf(CommandException.class).hasMessageContaining("Can not set position");
     }
 
 }
