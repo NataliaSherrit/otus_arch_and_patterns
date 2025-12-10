@@ -2,24 +2,12 @@ package ru.otus.game.dto;
 
 public class Message {
 
-    /**
-     * id игры для определения получателя сообщения при маршрутизации сообщения внутри игрового сервера
-     */
     private final String gameId;
 
-    /**
-     * id игрового объекта, которому адресовано сообщение
-     */
     private final String objectId;
 
-    /**
-     * id операции для определения команды
-     */
     private final String operationId;
 
-    /**
-     * параметры команды
-     */
     private final Object[] args;
 
     public Message(String gameId, String objectId, String operationId, Object[] args) {
